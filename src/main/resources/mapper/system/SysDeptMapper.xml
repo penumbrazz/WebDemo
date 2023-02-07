@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.web.system.mapper.SysDeptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.web.system.model.SysDept">
+        <id column="F_DEPTID" property="fDeptid" />
+        <result column="F_DEPTPID" property="fDeptpid" />
+        <result column="VC_DEPTNAME" property="vcDeptname" />
+        <result column="D_CREATEDATE" property="dCreatedate" />
+        <result column="VC_DEPT_CODE" property="vcDeptCode" />
+        <result column="VC_MEMO" property="vcMemo" />
+        <result column="F_SORT" property="fSort" />
+        <result column="VC_STATUS" property="vcStatus" />
+        <result column="VC_UPDATAUSER" property="vcUpdatauser" />
+        <result column="D_UPDATETIME" property="dUpdatetime" />
+    </resultMap>
+
+
+
+
+</mapper>

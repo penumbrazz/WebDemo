@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.web.admin.user.mapper.SysUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.web.admin.user.model.SysUser">
+        <id column="F_USERID" property="fUserid" />
+        <result column="VC_USERNO" property="vcUserno" />
+        <result column="VC_ACCOUNT" property="vcAccount" />
+        <result column="VC_PASSWORD" property="vcPassword" />
+        <result column="VC_USERNAME" property="vcUsername" />
+        <result column="VC_NICKNAME" property="vcNickname" />
+        <result column="VC_SEX" property="vcSex" />
+        <result column="F_AGE" property="fAge" />
+        <result column="VC_CELLPHONE" property="vcCellphone" />
+        <result column="VC_TELEPHONE" property="vcTelephone" />
+        <result column="VC_EMAIL" property="vcEmail" />
+        <result column="VC_FAX" property="vcFax" />
+        <result column="VC_CONDITION" property="vcCondition" />
+        <result column="VC_STATUS" property="vcStatus" />
+        <result column="F_COMPANYID" property="fCompanyid" />
+        <result column="D_CREATEDATE" property="dCreatedate" />
+        <result column="D_UPDATETIME" property="dUpdatetime" />
+        <result column="VC_REMARK" property="vcRemark" />
+        <result column="VC_UPDATAUSER" property="vcUpdatauser" />
+        <result column="VC_FUND_TYPE" property="vcFundType" />
+    </resultMap>
+
+</mapper>
