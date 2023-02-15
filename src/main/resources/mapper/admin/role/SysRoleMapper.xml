@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.web.admin.role.mapper.SysRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.demo.web.admin.role.model.SysRole">
+        <id column="F_ID" property="fId" />
+        <result column="VC_ROLE_CODE" property="vcRoleCode" />
+        <result column="VC_ROLE_NAME" property="vcRoleName" />
+        <result column="F_DEPTID" property="fDeptid" />
+        <result column="VC_STATUS" property="vcStatus" />
+        <result column="VC_MEMO" property="vcMemo" />
+        <result column="F_SORT" property="fSort" />
+        <result column="D_UPDATETIME" property="dUpdatetime" />
+        <result column="VC_UPDATAUSER" property="vcUpdatauser" />
+    </resultMap>
+
+</mapper>

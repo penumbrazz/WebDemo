@@ -8,11 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +20,7 @@ import java.util.List;
  * @author zrk
  * @since 2023-02-07
  */
-@Controller
+@RestController
 @Api(tags="SysDeptController")
 @Tag(name="SysDeptController",description = "部门")
 @RequestMapping("/system/sysDept")
@@ -39,6 +35,11 @@ public class SysDeptController {
     {
         List<SysDept> list=deptService.list();
         return list;
+    }
+    @RequestMapping("/pathEcho/{msg}")
+    @ResponseBody
+    public String pathEcho(@PathVariable String msg){
+        return msg;
     }
 }
 

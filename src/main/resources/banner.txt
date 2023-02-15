@@ -1,0 +1,5 @@
+${AnsiColor.BRIGHT_RED}
+？？      ？？
+？？      ？？
+${AnsiColor.BLUE}
+Application Name:${spring.application.name}
