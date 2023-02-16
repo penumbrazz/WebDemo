@@ -62,6 +62,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+        <!--日志-->
+
         <!--集成druid连接池-->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -149,6 +151,7 @@
             <artifactId>velocity-engine-core</artifactId>
             <version>${velocity.version}</version>
         </dependency>
+
 
     </dependencies>
 

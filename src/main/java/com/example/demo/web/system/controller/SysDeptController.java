@@ -6,6 +6,7 @@ import com.example.demo.web.system.service.SysDeptService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.List;
  * @author zrk
  * @since 2023-02-07
  */
+@Slf4j
 @RestController
 @Api(tags="SysDeptController")
 @Tag(name="SysDeptController",description = "部门")
@@ -34,6 +36,9 @@ public class SysDeptController {
     public List<SysDept> list()
     {
         List<SysDept> list=deptService.list();
+        log.info("info");
+        log.error("error");
+        log.debug("debug");
         return list;
     }
     @RequestMapping("/pathEcho/{msg}")
