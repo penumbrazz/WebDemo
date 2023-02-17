@@ -27,10 +27,10 @@ public class SysUserController {
     private SysUserService userService;
 
     @ApiOperation("用户列表")
-    @GetMapping("/list")
+    @GetMapping ("/list")
     public List<SysUser> list()
     {
-        return userService.list();
+        return userService.selectAll();
 
     }
 }

@@ -25,5 +25,8 @@
         <result column="VC_UPDATAUSER" property="vcUpdatauser" />
         <result column="VC_FUND_TYPE" property="vcFundType" />
     </resultMap>
+    <select id="selectAll" resultType="com.example.demo.web.admin.user.model.SysUser">
+        select * from SYS_USER
+    </select>
 
 </mapper>

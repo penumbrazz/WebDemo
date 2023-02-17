@@ -29,6 +29,8 @@
         <mysql-connector.version>8.0.29</mysql-connector.version>
         <jjwt.version>0.9.1</jjwt.version>
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
+        <mybatis.spring.version>2.1.4</mybatis.spring.version>
+
         <springfox-swagger.version>3.0.0</springfox-swagger.version>
         <velocity.version>2.3</velocity.version>
     </properties>
@@ -94,11 +96,7 @@
             <artifactId>springfox-boot-starter</artifactId>
             <version>${springfox-swagger.version}</version>
         </dependency>
-        <!--redis依赖配置-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-redis</artifactId>-->
-<!--        </dependency>-->
+
         <!--SpringSecurity依赖配置-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
@@ -132,6 +130,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!--MyBatis-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.spring.version}</version>
         </dependency>
         <!--MyBatis Plus 依赖-->
         <dependency>

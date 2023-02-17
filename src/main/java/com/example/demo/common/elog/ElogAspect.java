@@ -14,6 +14,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestAttributes;
@@ -48,13 +49,14 @@ public class ElogAspect {
     /**
      * controller层
      */
-    @Pointcut("(execution(* com.example.demo.web.*.controller.*.*(..)))" +
+    @Pointcut("(execution(* com.example.demo.web..controller.*.*(..)))" +
             "&&(@annotation(org.springframework.web.bind.annotation.RequestMapping)" +
-            "|| @annotation(org.springframework.web.bind.annotation.PostMapping)) ")
+            "|| @annotation(org.springframework.web.bind.annotation.PostMapping)" +
+            "||@annotation(org.springframework.web.bind.annotation.GetMapping)) ")
     private  void pointCutController(){
     }
 
-    @Pointcut("execution(* com.example.demo.web.*.mapper.*.*(..)))&&@annotation(com.example.demo.common.elog.Elog)")
+    @Pointcut("execution(* com.example.demo.web..mapper.*.*(..))&&@annotation(com.example.demo.common.elog.Elog)")
     private void pointCutMapper(){
 
     }
@@ -70,7 +72,14 @@ public class ElogAspect {
         RequestMapping requestMapping = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(RequestMapping.class);
         if (null == requestMapping) {
             PostMapping postMapping = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(PostMapping.class);
-            methodUri = postMapping.value()[0];
+            if(postMapping==null)
+            {
+                GetMapping getMapping=((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(GetMapping.class);
+                methodUri=getMapping.value()[0];
+            }else{
+                methodUri = postMapping.value()[0];
+            }
+
         } else {
             methodUri = requestMapping.value()[0];
         }
@@ -98,7 +107,7 @@ public class ElogAspect {
         return proceed;
     }
 
-    //@Around("pointCutMapper()")
+    @Around("pointCutMapper()")
     public Object doAroundMapper(ProceedingJoinPoint joinPoint) throws Throwable
     {
         RequestAttributes ra=RequestContextHolder.getRequestAttributes();
