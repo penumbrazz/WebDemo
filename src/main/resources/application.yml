@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: demo1
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    auto-mapping-behavior: partial
+    map-underscore-to-camel-case: true
+
+redis:
+  database: demo
+  key:
+    admin: 'demo:admin'
+    resourceList: 'demo:resourceList'
+  expire:
+    common: 86400 # 24小时
