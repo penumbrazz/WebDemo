@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +35,7 @@ public class SysDeptController {
     @ApiOperation("部门列表")
     @RequestMapping(value="/list",method = RequestMethod.GET)
     @ResponseBody
+    @CachePut(value="demo",key="':level:level1:level2'")
     public List<SysDept> list()
     {
         List<SysDept> list=deptService.list();
@@ -43,6 +46,7 @@ public class SysDeptController {
     }
     @RequestMapping("/pathEcho/{msg}")
     @ResponseBody
+    @Cacheable(value = "echo",key="'echokey'")
     public String pathEcho(@PathVariable String msg){
         return msg;
     }
