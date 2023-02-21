@@ -69,6 +69,7 @@ public class ElogAspect {
         String classUri = AnnotationUtils.findAnnotation(joinPointObject.getMethod().getDeclaringClass(), RequestMapping.class).value()[0];
         //获取方法上请求路径
         String methodUri = "";
+
         RequestMapping requestMapping = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(RequestMapping.class);
         if (null == requestMapping) {
             PostMapping postMapping = ((MethodSignature) joinPoint.getSignature()).getMethod().getAnnotation(PostMapping.class);
@@ -94,7 +95,7 @@ public class ElogAspect {
         }
         String browserDetails = request.getHeader("User-Agent");
 
-        log.info("测试controller"+classUri+clientIp+browserDetails);
+        //log.info("测试controller"+classUri+clientIp+browserDetails);
         Object proceed;
         try{
             proceed = joinPoint.proceed();
@@ -149,7 +150,7 @@ public class ElogAspect {
             request.setAttribute("resultBeforeUpdate", new GsonBuilder().create().toJson(proceed));
         }
         logSqlSlog(sqlUuid.get(), interfaceUuid.get() == null ?
-                        UUID.randomUUID().toString().replace("-", "") : interfaceUuid.get(),
+                        IdUtil.simpleUUID() : interfaceUuid.get(),
                 curdType, "admin", "demo", params, proceed, resultBeforeUpdate);
         return proceed;
 

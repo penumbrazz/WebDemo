@@ -31,7 +31,7 @@
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <mybatis.spring.version>2.1.4</mybatis.spring.version>
 
-        <springfox-swagger.version>3.0.0</springfox-swagger.version>
+        <knife4j.version>3.0.3</knife4j.version>
         <velocity.version>2.3</velocity.version>
     </properties>
 
@@ -96,17 +96,22 @@
             <version>${mysql-connector.version}</version>
         </dependency>
         <!--Swagger-UI API文档生产工具-->
+<!--        <dependency>-->
+<!--            <groupId>io.springfox</groupId>-->
+<!--            <artifactId>springfox-boot-starter</artifactId>-->
+<!--            <version>${springfox-swagger.version}</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>${springfox-swagger.version}</version>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
         </dependency>
 
         <!--SpringSecurity依赖配置-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!--Hutool Java工具包-->
         <dependency>
             <groupId>cn.hutool</groupId>
