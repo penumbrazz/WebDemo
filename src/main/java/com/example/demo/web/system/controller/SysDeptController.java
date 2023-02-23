@@ -1,6 +1,7 @@
 package com.example.demo.web.system.controller;
 
 
+import com.baomidou.mybatisplus.extension.toolkit.SqlRunner;
 import com.example.demo.web.system.model.SysDept;
 import com.example.demo.web.system.service.SysDeptService;
 import io.swagger.annotations.Api;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -49,6 +51,15 @@ public class SysDeptController {
     @Cacheable(value = "echo",key="'echokey'")
     public String pathEcho(@PathVariable String msg){
         return msg;
+    }
+
+    @RequestMapping(value="/deptList",method = RequestMethod.GET)
+    @ResponseBody
+    public List<Map<String,Object>> deptList()
+    {
+        String sql="select * from sys_dept";
+        List<Map<String,Object>> list= SqlRunner.db().selectList(sql);
+        return list;
     }
 }
 

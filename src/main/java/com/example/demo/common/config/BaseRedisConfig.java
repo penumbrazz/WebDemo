@@ -31,28 +31,28 @@ public class BaseRedisConfig extends CachingConfigurerSupport {
 
             @Override
             public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
-                handleRedisErrorException(exception, key);
+                RedisErrorException(exception, key);
             }
 
             @Override
             public void handleCachePutError(RuntimeException exception, Cache cache, Object key, Object value) {
-                handleRedisErrorException(exception, key);
+                RedisErrorException(exception, key);
             }
 
             @Override
             public void handleCacheEvictError(RuntimeException exception, Cache cache, Object key) {
-                handleRedisErrorException(exception, key);
+                RedisErrorException(exception, key);
             }
 
             @Override
             public void handleCacheClearError(RuntimeException exception, Cache cache) {
-                handleRedisErrorException(exception, null);
+                RedisErrorException(exception, null);
             }
         };
         return cacheErrorHandler;
     }
 
-    protected void handleRedisErrorException(Exception exception,Object key){
+    protected void RedisErrorException(Exception exception,Object key){
         log.error("redis异常：key=[{}], exception={}", key, exception.getMessage());
     }
 

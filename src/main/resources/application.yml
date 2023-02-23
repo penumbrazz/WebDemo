@@ -12,6 +12,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+    enable-sql-runner: true
   configuration:
     auto-mapping-behavior: partial
     map-underscore-to-camel-case: true

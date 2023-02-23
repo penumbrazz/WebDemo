@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     @ExceptionHandler(value= RuntimeException.class)
     public void handleRuntimeException(RuntimeException e){
-        //todo:log
+        //todo:
     }
     @ResponseBody
     @ExceptionHandler(value = IOException.class)
