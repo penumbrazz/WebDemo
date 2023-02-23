@@ -6,6 +6,10 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.Cache;
+import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.interceptor.CacheErrorHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
@@ -16,13 +20,43 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.http.codec.cbor.Jackson2CborDecoder;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 
-public class BaseRedisConfig {
+@Slf4j
+public class BaseRedisConfig extends CachingConfigurerSupport {
+    @Override
+    public CacheErrorHandler errorHandler() {
+        CacheErrorHandler cacheErrorHandler = new CacheErrorHandler() {
+
+            @Override
+            public void handleCacheGetError(RuntimeException exception, Cache cache, Object key) {
+                handleRedisErrorException(exception, key);
+            }
+
+            @Override
+            public void handleCachePutError(RuntimeException exception, Cache cache, Object key, Object value) {
+                handleRedisErrorException(exception, key);
+            }
+
+            @Override
+            public void handleCacheEvictError(RuntimeException exception, Cache cache, Object key) {
+                handleRedisErrorException(exception, key);
+            }
+
+            @Override
+            public void handleCacheClearError(RuntimeException exception, Cache cache) {
+                handleRedisErrorException(exception, null);
+            }
+        };
+        return cacheErrorHandler;
+    }
+
+    protected void handleRedisErrorException(Exception exception,Object key){
+        log.error("redis异常：key=[{}], exception={}", key, exception.getMessage());
+    }
+
+
     @Bean
     public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory redisConnectionFactory)
     {
